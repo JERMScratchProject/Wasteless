@@ -18,23 +18,25 @@ body {
 
 .App {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .nav {
   display:flex;
   flex-direction: column;
   width:25%;
-  border: rgb(211, 211, 211) 2px solid;
+  border: rgb(225, 213, 197) 2px solid;
   border-radius: 5px;
+  padding: 10px;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  border: rgb(194, 239, 224) 2px solid;
+  border: rgb(225, 213, 197) 2px solid;
   border-radius: 5px;
   width: 70%;
+  padding: 10px;
 }
 
 .link {
@@ -43,7 +45,7 @@ body {
   border-radius: 10px;
   padding: 14px 25px;
   text-align: center;
-  background-color: ededed;
+  background-color: rgb(225, 213, 197);
   color: black;
   margin: 5px;
 }
@@ -61,4 +63,19 @@ body {
 #newItemField {
   width: 100px;
   margin: auto;
+}
+
+/* button {
+  border: none;
+	outline: none;
+	background: none;
+} */
+
+.ItemComponent {
+  border: solid black 1px;
+  border-color: rgb(225, 213, 197) 2px;
+  background-color: rgb(225, 213, 197);
+  border-radius: 10px;
+  padding: 10px 15px;
+  text-align: center;
 }
