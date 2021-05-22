@@ -2,16 +2,13 @@ import React from 'react';
 import Item from './Item';
 import { useState, useEffect } from 'react';
 
-function CurrentList ({food, setFood}) {
+function OutcomesList () {
     const state = {
         listOfItems: [], // <-- this will be intitialized w/ the data from get request
         login: true
     }
 
     const [ currState, setState ] = useState(state);
-
-
-
     useEffect(()=>{
        
         fetch('/api/')
@@ -89,16 +86,15 @@ for (let i=0; i<currState.listOfItems.length;i++){
 }
 
 
-return (
-    <div className='list'>
-        <h3>CURRENT LIST</h3>
-        <p>TO BUY:</p>
-        {listArray}
-        <input type='text' id="newItemField" onChange={handleChange} onKeyDown={handleKeyDown} />
-        <button onClick={addItem} className='button'>Add Item</button>
-    
-    </div>
+    return (
+        <div className='list'>
+            <h3>Outcomes LIST</h3>
+            <p>TO BUY:</p>
+            {listArray}
+            <input type='text' id="newItemField" onChange={handleChange} onKeyDown={handleKeyDown} />
+            <button onClick={addItem} className='button'>Add Item</button>
+        </div>
     )
 }
 
-export default CurrentList;
+export default OutcomesList;

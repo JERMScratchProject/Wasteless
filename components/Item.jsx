@@ -1,9 +1,13 @@
 import React from 'react';
 
 function Item (props) {
+
+ 
+
   return (
-    <div>
-    <span>{ props.id }: { props.itemName } --- </span> <button>Mark as Bought</button><button>Delete</button>
+    <div className="ItemComponent">
+    <span>{ props.id }: { props.itemName } --- </span> <button> ✅ </button>
+    <button> ❌ </button>
     </div>
   )
 }

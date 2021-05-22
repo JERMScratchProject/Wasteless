@@ -7,7 +7,7 @@ FoodController.getFood = (req, res, next) => {
   models.Food.find({})
     .then((data) => {
       // storing the data in key called food in res.locals
-      // console.log(data);
+      
       res.locals.food = data;
       return next();
     })
@@ -23,20 +23,21 @@ FoodController.getFood = (req, res, next) => {
 };
 
 FoodController.addFood = (req, res, next) => {
-  const { item, type, quantity, date, price, expiration, status, preference, outcome } = req.body;
-
+  const { item } = req.body;
+  // , type, quantity, date, price, expiration, status, preference, outcome 
   models.Food.create({
-    item,
-    type,
-    quantity,
-    date,
-    price,
-    expiration,
-    status,
-    preference,
-    outcome,
+    item
+    // type,
+    // quantity,
+    // date,
+    // price,
+    // expiration,
+    // status,
+    // preference,
+    // outcome,
   })
     .then((data) => {
+      console.log('got to here');
       res.locals.food = data;
       // console.log(res.locals.food);
       return next();
