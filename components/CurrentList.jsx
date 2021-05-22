@@ -28,6 +28,11 @@ function addItem() {
     })
 }
 
+//TBD: Mark as Bought functionality (update itemStatus property to 'bought' & remove from current render)
+function markAsBought() {
+    
+}
+
 //TBD: Delete item function??
 function deleteItem() {
 
