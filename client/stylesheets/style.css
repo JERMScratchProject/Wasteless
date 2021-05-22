@@ -6,27 +6,76 @@
 
 h1, h3 {
   text-align: center;
+  font-family: 'Newsreader', serif;
 }
 
 body {
   width: 100%;
+  background-color: #9BA17B;
+  background-image: linear-gradient(300deg, #9BA17B 0%, #ededed, 128, 118 74%);
+
 }
 
 .App {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .nav {
   display:flex;
   flex-direction: column;
   width:25%;
-  border: black 1px solid;
+  border: rgb(225, 213, 197) 2px solid;
+  border-radius: 5px;
+  padding: 10px;
 }
 
-.currentList {
+.list {
   display: flex;
   flex-direction: column;
-  border: black 1px solid;
+  border: rgb(225, 213, 197) 2px solid;
+  border-radius: 5px;
   width: 70%;
+  padding: 10px;
+}
+
+.link {
+  text-decoration: none;
+  border: solid black 1px;
+  border-radius: 10px;
+  padding: 14px 25px;
+  text-align: center;
+  background-color: rgb(225, 213, 197);
+  color: black;
+  margin: 5px;
+}
+
+.link:visited{
+  text-decoration: none;
+}
+
+.button {
+  width: 100px;
+  text-align: center;
+  margin: auto;
+}
+
+#newItemField {
+  width: 100px;
+  margin: auto;
+}
+
+/* button {
+  border: none;
+	outline: none;
+	background: none;
+} */
+
+.ItemComponent {
+  border: solid black 1px;
+  border-color: rgb(225, 213, 197) 2px;
+  background-color: rgb(225, 213, 197);
+  border-radius: 10px;
+  padding: 10px 15px;
+  text-align: center;
 }

@@ -15,18 +15,18 @@ mongoose
 const { Schema } = mongoose;
 
 const foodSchema = new Schema({
-  item: { type: String },
-  type: { type: String },
-  quantity: { type: Number },
-  date: { type: Date },
-  price: { type: Number },
-  expiration: { type: Date },
-  status: { type: String },
-  preference: { type: String },
-  outcome: { type: String },
+  item: { type: String, default: ''},
+  type: { type: String, default: '' },
+  quantity: { type: Number, default: 0 }, 
+  date: { type: Date, default: Date.now() },
+  price: { type: Number, default: 0 },
+  expiration: { type: Date, default: Date.now() + 12096e5 },
+  status: { type: String, default: 'to buy' },
+  preference: { type: String, default: ''},
+  outcome: { type: String, default: ''},
 });
 
-const Food = mongoose.model('food', foodSchema);
+const Food = mongoose.model('food', foodSchema,'food');
 
 module.exports = {
   Food,
