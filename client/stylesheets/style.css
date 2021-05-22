@@ -1,0 +1,32 @@
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+h1, h3 {
+  text-align: center;
+}
+
+body {
+  width: 100%;
+}
+
+.App {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav {
+  display:flex;
+  flex-direction: column;
+  width:25%;
+  border: black 1px solid;
+}
+
+.currentList {
+  display: flex;
+  flex-direction: column;
+  border: black 1px solid;
+  width: 70%;
+}
