@@ -4,7 +4,7 @@ import Item from './item'
 function CurrentList () {
     return (
         <div className='currentList'>
-            <p>CURRENT LIST</p>
+            <h3>CURRENT LIST</h3>
             <p>item 1</p>
             <p>item 2</p>
             <Item />
