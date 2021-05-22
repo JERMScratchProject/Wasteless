@@ -1,9 +1,13 @@
 import React from 'react';
 
-function Item (props) {
+function Item (props, index, removeItem) {
+
+ 
+
   return (
     <div>
-    <span>{ props.id }: { props.itemName } --- </span> <button>Mark as Bought</button><button>Delete</button>
+    <span>{ props.id }: { props.itemName } --- </span> <button>Mark as Bought</button>
+    <button>Delete</button>
     </div>
   )
 }

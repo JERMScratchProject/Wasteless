@@ -7,7 +7,7 @@ FoodController.getFood = (req, res, next) => {
   models.Food.find({})
     .then((data) => {
       // storing the data in key called food in res.locals
-      console.log(data);
+      
       res.locals.food = data;
       return next();
     })

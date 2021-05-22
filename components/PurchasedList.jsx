@@ -92,7 +92,7 @@ for (let i=0; i<currState.listOfItems.length;i++){
             <p>TO BUY:</p>
             {listArray}
             <input type='text' id="newItemField" onChange={handleChange} onKeyDown={handleKeyDown} />
-            <button onClick={addItem}>Add Item</button>
+            <button onClick={addItem} className='button'>Add Item</button>
         </div>
     )
 }
