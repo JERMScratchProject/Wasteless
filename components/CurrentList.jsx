@@ -25,7 +25,12 @@ function addItem() {
         console.log("new list is " + newList);
         return { ...prevState, listOfItems: newList }
     })
+}
 
+function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+        addItem();
+    }
 }
 
 const listArray = [];
@@ -40,8 +45,8 @@ for (let i=0; i<currState.listOfItems.length;i++){
             <h3>CURRENT LIST</h3>
             <p>Hard coded item</p>
             {listArray}
-            <input type='text' id="newItemField" onChange={handleChange}/>
-            <button onClick={addItem} >click meeeeee</button>
+            <input type='text' id="newItemField" onChange={handleChange} onKeyDown={handleKeyDown} />
+            <button onClick={addItem} onEnter={addItem} >click meeeeee</button>
         </div>
     )
 }
