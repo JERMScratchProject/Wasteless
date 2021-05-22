@@ -15,18 +15,18 @@ mongoose
 const { Schema } = mongoose;
 
 const foodSchema = new Schema({
-  item: { type: String, required: true },
-  type: { type: String, required: true },
-  quantity: { type: Number, required: true },
-  date: { type: Date, required: true },
-  price: { type: Number, required: true },
-  expiration: { type: Date, required: true },
-  status: { type: String, required: true },
-  preference: { type: String, required: true },
-  outcome: { type: String, required: true },
+  item: { type: String },
+  type: { type: String },
+  quantity: { type: Number },
+  date: { type: Date },
+  price: { type: Number },
+  expiration: { type: Date },
+  status: { type: String },
+  preference: { type: String },
+  outcome: { type: String },
 });
 
-const Food = mongoose.model('food', foodSchema, 'food');
+const Food = mongoose.model('food', foodSchema);
 
 module.exports = {
   Food,

@@ -22,4 +22,38 @@ FoodController.getFood = (req, res, next) => {
     );
 };
 
+FoodController.addFood = (req, res, next) => {
+  const { item, type, quantity, date, price, expiration, status, preference, outcome } = req.body;
+
+  models.Food.create({
+    item,
+    type,
+    quantity,
+    date,
+    price,
+    expiration,
+    status,
+    preference,
+    outcome,
+  })
+    .then((data) => {
+      res.locals.food = data;
+      // console.log(res.locals.food);
+      return next();
+    })
+    .catch((err) =>
+      next({
+        log: `FoodController.addFood: ERROR: ${err}`,
+        message: {
+          err: 'Error occurred in FoodController.addFood. Check server logs for more details.',
+        },
+      })
+    );
+};
+
+// find items by id of which food item user bought
+// has status of to buy and update their status
+
+// FoodController.updateStatus.findOneAndUpdate({ status: 'purchased' });
+
 module.exports = FoodController;
