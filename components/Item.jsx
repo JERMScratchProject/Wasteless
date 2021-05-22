@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Item () {
+function Item (props) {
   return (
     <div>
-    <p>This is my itemmmmm</p>
+    <span>{ props.id }: { props.itemName } --- </span> <button>Mark as Bought</button><button>Delete</button>
     </div>
   )
 }

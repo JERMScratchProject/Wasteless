@@ -3,6 +3,7 @@ import SideNavBar from './SideNavBar'
 import CurrentList from './CurrentList';
 
 function App() {
+
   return (
   <div className='App'>
     <SideNavBar />
