@@ -3,7 +3,7 @@ import React from 'react';
 function Item (props) {
   return (
     <div>
-    <span>{ props.id }: { props.itemName } | </span> <button>Mark as bought</button>
+    <span>{ props.id }: { props.itemName } --- </span> <button>Mark as Bought</button><button>Delete</button>
     </div>
   )
 }
