@@ -1,5 +1,4 @@
 import React from 'react';
-import AddItem from './AddItem';
 
 function SideNavBar () {
     return (
@@ -8,7 +7,6 @@ function SideNavBar () {
             <p>To Buy</p>
             <p>Current Pantry Stock</p>
             <p>Outcomes</p>
-            <AddItem/>
         </div>
     )
 }
