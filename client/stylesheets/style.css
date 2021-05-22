@@ -24,7 +24,7 @@ body {
   border: black 1px solid;
 }
 
-.currentList {
+.list {
   display: flex;
   flex-direction: column;
   border: black 1px solid;

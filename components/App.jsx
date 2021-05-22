@@ -10,13 +10,13 @@ function App() {
   return (
   <div className='App'>
     <SideNavBar />
-    <Router>
+   
     <Switch>
       <Route component = {CurrentList} exact path="/"></Route>
-      <Route component = {PurchasedList} path="/purchased"></Route>
-      <Route component = {OutcomesList} path="/outcomes"></Route>
+      <Route component = {PurchasedList} exact path="/purchased"></Route>
+      <Route component = {OutcomesList} exact path="/outcomes"></Route>
     </Switch>
-    </Router>
+    
   </div>
 
   )

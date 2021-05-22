@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 function OutcomesList () {
     const state = {
-        listOfItems: ['Apples', 'Bananas', 'Carrots', 'Dates'], // <-- this will be intitialized w/ the data from get request
+        listOfItems: [], // <-- this will be intitialized w/ the data from get request
         login: true
     }
 
@@ -87,8 +87,8 @@ for (let i=0; i<currState.listOfItems.length;i++){
 
 
     return (
-        <div className='outcomesList'>
-            <h3>CURRENT LIST</h3>
+        <div className='list'>
+            <h3>Outcomes LIST</h3>
             <p>TO BUY:</p>
             {listArray}
             <input type='text' id="newItemField" onChange={handleChange} onKeyDown={handleKeyDown} />
