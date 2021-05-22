@@ -23,20 +23,21 @@ FoodController.getFood = (req, res, next) => {
 };
 
 FoodController.addFood = (req, res, next) => {
-  const { item, type, quantity, date, price, expiration, status, preference, outcome } = req.body;
-
+  const { item } = req.body;
+  // , type, quantity, date, price, expiration, status, preference, outcome 
   models.Food.create({
-    item,
-    type,
-    quantity,
-    date,
-    price,
-    expiration,
-    status,
-    preference,
-    outcome,
+    item
+    // type,
+    // quantity,
+    // date,
+    // price,
+    // expiration,
+    // status,
+    // preference,
+    // outcome,
   })
     .then((data) => {
+      console.log('got to here');
       res.locals.food = data;
       // console.log(res.locals.food);
       return next();

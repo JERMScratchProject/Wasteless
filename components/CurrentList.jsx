@@ -19,12 +19,23 @@ function addItem() {
     if (!document.getElementById('newItemField').value) {
         return;
     };
+
+    // generate a fetch request by passing in the newItem as item key in body
+    fetch('/api/food', {
+        method: 'POST',
+        headers: {'Content-Type': 'Application/JSON'},
+        body: JSON.stringify({item:newItem[0]})
+    })
+    .then(()=>{console.log(newItem)})
+    .catch((err)=>{console.log('there was an error:', err)})
+
+
     document.getElementById('newItemField').value = "";
     setState((prevState) => {
         const newList = prevState.listOfItems.concat(newItem);
         console.log("new list is " + newList);
-        return { ...prevState, listOfItems: newList }
         // TBD: Trigger post request to let DB know about new item?
+        return { ...prevState, listOfItems: newList }
     })
 }
 
@@ -60,10 +71,10 @@ for (let i=0; i<currState.listOfItems.length;i++){
     return (
         <div className='currentList'>
             <h3>CURRENT LIST</h3>
-            <p strong>TO BUY:</p>
+            <p>TO BUY:</p>
             {listArray}
             <input type='text' id="newItemField" onChange={handleChange} onKeyDown={handleKeyDown} />
-            <button onClick={addItem} onEnter={addItem}>Add Item</button>
+            <button onClick={addItem}>Add Item</button>
         </div>
     )
 }
