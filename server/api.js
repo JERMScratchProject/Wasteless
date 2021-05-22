@@ -10,4 +10,6 @@ router.get('/', FoodController.getFood, (req, res) => {
   // console.log(res.locals.food)
 });
 
+router.post('/food', FoodController.addFood, (req, res) => res.status(200).json(res.locals.food));
+
 module.exports = router;
