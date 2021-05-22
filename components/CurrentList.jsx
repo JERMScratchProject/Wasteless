@@ -1,15 +1,33 @@
 import React from 'react';
 import Item from './Item';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function CurrentList () {
+    const state = {
+        listOfItems: ['Apples', 'Bananas', 'Carrots', 'Dates'], // <-- this will be intitialized w/ the data from get request
+        login: true
+    }
 
-const state = {
-    listOfItems: ['Apples', 'Bananas', 'Carrots', 'Dates'], // <-- this will be intitialized w/ the data from get request
-    login: true
-}
+    const [ currState, setState ] = useState(state);
+    useEffect(()=>{
+       
+        fetch('/api/')
+        .then((items) => {
+            const data = items.json();
+            return data;
+        })
+        .then((data)=> {
+            
+            const returnedItemNames = [];
+            for (let el of data) {
+                returnedItemNames.push(el.item);
+            }
+            console.log("NAMES: " + returnedItemNames);
+            setState({...currState, listOfItems: returnedItemNames});
 
-const [ currState, setState ] = useState(state);
+        })
+    }, []);
+
 const listOfItems = currState.listOfItems;
 
 let newItem;
