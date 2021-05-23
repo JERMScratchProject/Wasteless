@@ -60,6 +60,7 @@ function CurrentList() {
   }
 
   function deleteItem(item) {
+    console.log('delete started');
     fetch(`/api/food/${item}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'Application/JSON' },
@@ -69,6 +70,7 @@ function CurrentList() {
     });
 
     fetch('/api/')
+      // console.log('starting get follow up');
       .then((items) => {
         const data = items.json();
         return data;
@@ -82,8 +84,13 @@ function CurrentList() {
         }
         console.log('returned items: ', returnedItems);
         console.log(`NAMES: ${returnedItemNames}`);
-        setState({ ...currState, listOfItems: returnedItems, listOfItemNames: returnedItemNames });
+        setState({
+          ...currState,
+          listOfItems: returnedItems,
+          listOfItemNames: returnedItemNames,
+        });
       });
+
     // setState((prevState) => {
     //   const filteredItems = prevState.listOfItems.filter(
     //     (item) => prevState.listOfItems.item !== item
