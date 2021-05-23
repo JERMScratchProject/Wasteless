@@ -28,7 +28,7 @@ body {
   flex-direction: column;
   width:25%;
   border: #6b705c 2px solid;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 10px;
 }
 
@@ -36,7 +36,7 @@ body {
   display: flex;
   flex-direction: column;
   border: #6b705c 2px solid;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 70%;
   padding: 10px;
 }
@@ -77,7 +77,7 @@ body {
   background-color: #6b705c;
 }
 
-.addItemText {
+#addItemText {
   margin: 4px 2px;
   padding: 10px;
 }

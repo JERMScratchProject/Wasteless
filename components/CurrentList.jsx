@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Item from './Item';
 
-function CurrentList({ food, setFood }) {
+function CurrentList() {
   const state = {
-    listOfItems: [], // <-- this will be intitialized w/ the data from get request
+    listOfItems: [], // array to hold db objects
+    listOfItemNames: [], // array to hold names extracted from db objects
     login: true,
   };
 
@@ -16,22 +17,25 @@ function CurrentList({ food, setFood }) {
         return data;
       })
       .then((data) => {
+        const returnedItems = [];
         const returnedItemNames = [];
         for (const el of data) {
+          returnedItems.push(el);
           returnedItemNames.push(el.item);
         }
         console.log(`NAMES: ${returnedItemNames}`);
-        setState({ ...currState, listOfItems: returnedItemNames });
+        console.log('returned items: ', returnedItems);
+        setState({ ...currState, listOfItems: returnedItems, listOfItemNames: returnedItemNames });
       });
   }, []);
 
-  const { listOfItems } = currState;
+  const { listOfItemNames } = currState;
 
   let newItem;
 
   function addItem() {
     // Does nothing if input field is empty
-    if (!document.getElementById('newItemField').value) {
+    if (!document.getElementById('addItemText').value) {
       return;
     }
 
@@ -40,25 +44,33 @@ function CurrentList({ food, setFood }) {
       method: 'POST',
       headers: { 'Content-Type': 'Application/JSON' },
       body: JSON.stringify({ item: newItem[0] }),
-    })
-      .then(() => {
-        console.log(newItem);
-      })
-      .catch((err) => {
-        console.log('there was an error:', err);
-      });
+    }).catch((err) => {
+      console.log('there was an error:', err);
+    });
 
-    document.getElementById('newItemField').value = '';
+    document.getElementById('addItemText').value = '';
     setState((prevState) => {
-      const newList = prevState.listOfItems.concat(newItem);
+      const newList = prevState.listOfItemNames.concat(newItem);
       console.log(`new list is ${newList}`);
       // TBD: Trigger post request to let DB know about new item?
-      return { ...prevState, listOfItems: newList };
+      return { ...prevState, listOfItemNames: newList };
     });
   }
 
+  // function deleteItem(item) {
+  //   const item = document.getElementById(itemName)
+  //   Model.deleteOne({ item: itemName }, function (err) {
+  //     if(err) console.log(err);
+  //     console.log("Successful delete");
+  //   }
+  // }
+
+  // function handleDeleteClick() {
+  //   deleteItem(itemName);
+  // }
+
   // TBD: Mark as Bought functionality (update itemStatus property to 'bought' & remove from current render)
-  function markAsBought() {}
+  // function markAsBought() {}
 
   // Selects user input when change is detected
   function handleChange(e) {
@@ -73,8 +85,18 @@ function CurrentList({ food, setFood }) {
   }
 
   const listArray = [];
-  for (let i = 0; i < currState.listOfItems.length; i++) {
-    listArray.push(<Item itemName={currState.listOfItems[i]} key={i} id={i + 1} />);
+  for (let i = 0; i < currState.listOfItemNames.length; i++) {
+    // console.log(`got to here ${...currState} plzzzzz `);
+    listArray.push(
+      <Item
+        itemName={currState.listOfItemNames[i]}
+        key={i}
+        id={i + 1}
+        foodId={currState.listOfItems[i]._id}
+        currState={currState}
+        setState={setState}
+      />
+    );
   }
 
   return (
@@ -83,12 +105,7 @@ function CurrentList({ food, setFood }) {
       <p>To Buy:</p>
       {listArray}
       <div className="addItemContainer">
-        <input
-          type="text"
-          className="addItemText"
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-        />
+        <input type="text" id="addItemText" onChange={handleChange} onKeyDown={handleKeyDown} />
         <button onClick={addItem} className="addItemBtn">
           Add Item
         </button>

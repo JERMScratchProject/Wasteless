@@ -37,7 +37,6 @@ FoodController.addFood = (req, res, next) => {
     // outcome,
   })
     .then((data) => {
-      console.log('got to here');
       res.locals.food = data;
       // console.log(res.locals.food);
       return next();
@@ -54,19 +53,14 @@ FoodController.addFood = (req, res, next) => {
 
 FoodController.deleteFood = (req, res, next) => {
   // gets all info/data from the one food item
-  models.Food.findByIdAndDelete(req.params.id)
-    .then((data) => {
-      console.log(data);
-      return next();
+  models.Food.findByIdAndDelete(req.params.id).catch((err) =>
+    next({
+      log: `Food.deleteFood: ERROR: ${err}`,
+      message: {
+        err: 'Error occurred in Food.deleteFood. Check server logs for more details.',
+      },
     })
-    .catch((err) =>
-      next({
-        log: `Food.deleteFood: ERROR: ${err}`,
-        message: {
-          err: 'Error occurred in Food.deleteFood. Check server logs for more details.',
-        },
-      })
-    );
+  );
 };
 
 // find items by id of which food item user bought
