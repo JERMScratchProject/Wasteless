@@ -53,7 +53,7 @@ FoodController.addFood = (req, res, next) => {
 
 FoodController.deleteFood = (req, res, next) => {
   // gets all info/data from the one food item
-  models.Food.findByIdAndDelete(req.params.id).catch((err) =>
+  models.Food.deleteOne({ item: req.params.item }).catch((err) =>
     next({
       log: `Food.deleteFood: ERROR: ${err}`,
       message: {

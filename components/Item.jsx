@@ -1,18 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 function Item(props) {
-  // const [currState, setState] = useState(props.state);
-  console.log(props.currState);
-  function deleteItem() {
-    fetch(`/api/food/${props.foodId}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'Application/JSON' },
-      body: JSON.stringify({ id: props.foodId }),
-    }).catch((err) => {
-      console.log(err);
-    });
-  }
-
   return (
     <div className="ItemComponent">
       <span className="items">
@@ -32,7 +20,13 @@ function Item(props) {
         </button>
 
         {/* delete button */}
-        <button className="toBuyListBtn" id="deleteBtn" onClick={deleteItem}>
+        <button
+          className="toBuyListBtn"
+          id="deleteBtn"
+          onClick={() => {
+            props.deleteItem(props.itemName);
+          }}
+        >
           {' '}
           <i className="fa fa-trash-o" />{' '}
         </button>

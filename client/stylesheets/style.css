@@ -70,16 +70,18 @@ body {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .addItemBtn:hover{
   background-color: #6b705c;
+
 }
 
 #addItemText {
   margin: 4px 2px;
   padding: 10px;
+  border-radius: 10px;
 }
 
 

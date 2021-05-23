@@ -12,7 +12,7 @@ router.get('/', FoodController.getFood, (req, res) => {
 
 router.post('/food', FoodController.addFood, (req, res) => res.status(200).json(res.locals.food));
 
-router.delete('/food/:id', FoodController.deleteFood, (req, res) =>
+router.delete('/food/:item', FoodController.deleteFood, (req, res) =>
   res.status(200).json({ message: 'deleted' })
 );
 
