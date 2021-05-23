@@ -59,54 +59,28 @@ function CurrentList() {
     });
   }
 
-  function deleteItem(item) {
+  function deleteItem(itemName) {
     console.log('delete started');
-    fetch(`/api/food/${item}`, {
+    fetch(`/api/food/${itemName}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'Application/JSON' },
-      body: JSON.stringify({ item }),
+      body: JSON.stringify({ item:itemName }),
     }).catch((err) => {
       console.log(err);
     });
-
-    fetch('/api/')
-      // console.log('starting get follow up');
-      .then((items) => {
-        const data = items.json();
-        return data;
+    
+    setState((prevState) => {
+      const itemNamesSlice = prevState.listOfItemNames.slice();
+      
+      const filtered = itemNamesSlice.filter((value)=>{
+        return value != itemName;
       })
-      .then((data) => {
-        const returnedItems = [];
-        const returnedItemNames = [];
-        for (const el of data) {
-          returnedItems.push(el);
-          returnedItemNames.push(el.item);
-        }
-        console.log('returned items: ', returnedItems);
-        console.log(`NAMES: ${returnedItemNames}`);
-        setState({
-          ...currState,
-          listOfItems: returnedItems,
-          listOfItemNames: returnedItemNames,
-        });
-      });
 
-    // setState((prevState) => {
-    //   const filteredItems = prevState.listOfItems.filter(
-    //     (item) => prevState.listOfItems.item !== item
-    //   );
-    //   const filteredItemNames = prevState.listOfItemNames.filter(
-    //     (item) => prevState.listOfItemNames.item !== item
-    //   );
-    //   return { ...prevState, listOfItems: filteredItems, listOfItemNames: filteredItemNames };
-    // });
+      return {...prevState, listOfItemNames: filtered}
+    });
+
   }
 
-  // take id of assignment and filter it our of assignment array
-  //   setAssignments(assignments.filter((assignment) => assignment.id !== id));
-
-  // TBD: Mark as Bought functionality (update itemStatus property to 'bought' & remove from current render)
-  // function markAsBought() {}
 
   // Selects user input when change is detected
   function handleChange(e) {
