@@ -7,7 +7,7 @@ FoodController.getFood = (req, res, next) => {
   models.Food.find({})
     .then((data) => {
       // storing the data in key called food in res.locals
-      
+
       res.locals.food = data;
       return next();
     })
@@ -24,9 +24,9 @@ FoodController.getFood = (req, res, next) => {
 
 FoodController.addFood = (req, res, next) => {
   const { item } = req.body;
-  // , type, quantity, date, price, expiration, status, preference, outcome 
+  // , type, quantity, date, price, expiration, status, preference, outcome
   models.Food.create({
-    item
+    item,
     // type,
     // quantity,
     // date,
@@ -47,6 +47,23 @@ FoodController.addFood = (req, res, next) => {
         log: `FoodController.addFood: ERROR: ${err}`,
         message: {
           err: 'Error occurred in FoodController.addFood. Check server logs for more details.',
+        },
+      })
+    );
+};
+
+FoodController.deleteFood = (req, res, next) => {
+  // gets all info/data from the one food item
+  models.Food.findByIdAndDelete(req.params.id)
+    .then((data) => {
+      console.log(data);
+      return next();
+    })
+    .catch((err) =>
+      next({
+        log: `Food.deleteFood: ERROR: ${err}`,
+        message: {
+          err: 'Error occurred in Food.deleteFood. Check server logs for more details.',
         },
       })
     );

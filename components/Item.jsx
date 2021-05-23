@@ -1,6 +1,15 @@
 import React from 'react';
 
 function Item(props) {
+  function deleteItem() {
+    useEffect(() => {
+      fetch('/food/:id', { method: 'DELETE' }).then(() => 
+      
+      );
+
+      // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    }, []);
+  }
   return (
     <div className="ItemComponent">
       <span className="items">

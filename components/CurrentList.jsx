@@ -60,9 +60,6 @@ function CurrentList({ food, setFood }) {
   // TBD: Mark as Bought functionality (update itemStatus property to 'bought' & remove from current render)
   function markAsBought() {}
 
-  // TBD: Delete item function??
-  function deleteItem() {}
-
   // Selects user input when change is detected
   function handleChange(e) {
     newItem = [e.target.value];
