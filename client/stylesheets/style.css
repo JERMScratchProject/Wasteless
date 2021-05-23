@@ -6,14 +6,16 @@
 
 h1, h3 {
   text-align: center;
-  font-family: 'Newsreader', serif;
+  font-family: 'Lora', serif;
+}
+
+h1 {
+  font-size: 60px;
 }
 
 body {
   width: 100%;
-  background-color: #9BA17B;
-  background-image: linear-gradient(300deg, #9BA17B 0%, #ededed, 128, 118 74%);
-
+  background-color: #a5a58d;
 }
 
 .App {
@@ -25,7 +27,7 @@ body {
   display:flex;
   flex-direction: column;
   width:25%;
-  border: rgb(225, 213, 197) 2px solid;
+  border: #6b705c 2px solid;
   border-radius: 5px;
   padding: 10px;
 }
@@ -33,7 +35,7 @@ body {
 .list {
   display: flex;
   flex-direction: column;
-  border: rgb(225, 213, 197) 2px solid;
+  border: #6b705c 2px solid;
   border-radius: 5px;
   width: 70%;
   padding: 10px;
@@ -45,7 +47,7 @@ body {
   border-radius: 10px;
   padding: 14px 25px;
   text-align: center;
-  background-color: rgb(225, 213, 197);
+  background-color: #fefae0;
   color: black;
   margin: 5px;
 }
@@ -54,28 +56,63 @@ body {
   text-decoration: none;
 }
 
-.button {
-  width: 100px;
-  text-align: center;
-  margin: auto;
+.addItemContainer{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
 }
-
-#newItemField {
-  width: 100px;
-  margin: auto;
-}
-
-/* button {
+.addItemBtn {
+  background-color: #b7b7a4;
   border: none;
-	outline: none;
-	background: none;
-} */
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.addItemBtn:hover{
+  background-color: #6b705c;
+}
+
+.addItemText {
+  margin: 4px 2px;
+  padding: 10px;
+}
+
+
+.items{
+  font-size: 18px;
+}
 
 .ItemComponent {
   border: solid black 1px;
-  border-color: rgb(225, 213, 197) 2px;
-  background-color: rgb(225, 213, 197);
+  background-color: #fefae0;
   border-radius: 10px;
   padding: 10px 15px;
   text-align: center;
+  margin: 10px;
+}
+
+.toBuyListBtn{
+  background-color: #b7b7a4;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.toBuyListBtn:hover{
+  background-color: #6b705c;
+}
+
+.toBuyListBtnContainer{
+  float: right;
 }
