@@ -11,6 +11,10 @@ function CurrentList() {
     listOfEatenItemNames: [],
     listOfDisposedItems: [],
     listOfDisposedItemNames: [],
+    listOfLikedItems: [],
+    listOfLikedItemNames: [],
+    listOfDislikedItems: [],
+    listOfDislikedItemNames: [],
   };
 
   const [currState, setState] = useState(state);

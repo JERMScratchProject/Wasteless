@@ -43,6 +43,26 @@ router.get('/eaten', FoodController.getEatenFood, (req, res) => {
   res.status(200).json(res.locals.eaten);
 });
 
+// update preference to liked
+router.put('/food/eaten/liked/:item', FoodController.updateLiked, (req, res) =>
+  res.status(200).json({ message: 'updated preference to liked' })
+);
+
+// get all liked items
+router.get('/liked', FoodController.getLikedFood, (req, res) => {
+  res.status(200).json(res.locals.liked);
+});
+
+// update preference to disliked
+router.put('/food/eaten/disliked/:item', FoodController.updateDisliked, (req, res) =>
+  res.status(200).json({ message: 'updated preference to disliked' })
+);
+
+// get all disliked items
+router.get('/disliked', FoodController.getDislikedFood, (req, res) => {
+  res.status(200).json(res.locals.eaten);
+});
+
 // update outcome to disposed
 router.put('/food/disposed/:item', FoodController.updateDisposed, (req, res) =>
   res.status(200).json({ message: 'updated outcome to disposed' })
