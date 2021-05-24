@@ -31,29 +31,6 @@ function CurrentList() {
       });
   }, []);
 
-  useEffect(() => {
-    console.log('use effect purchased started');
-    fetch('/api/purchased')
-      .then((items) => {
-        const data = items.json();
-        return data;
-      })
-      .then((data) => {
-        const returnedItems = [];
-        const returnedItemNames = [];
-        for (const el of data) {
-          returnedItems.push(el);
-          returnedItemNames.push(el.item);
-        }
-
-        setState({
-          ...currState,
-          listOfPurchasedItems: returnedItems,
-          listOfPurchasedItemNames: returnedItemNames,
-        });
-      });
-  }, []);
-
   const { listOfItemNames } = currState;
 
   let newItem;
@@ -101,7 +78,6 @@ function CurrentList() {
       return { ...prevState, listOfItemNames: filtered };
     });
   }
-
   // updates item status and removes from to buy list
   function updateItemStatus(itemName) {
     console.log('update started');
@@ -151,35 +127,17 @@ function CurrentList() {
     );
   }
 
-  const purchasedListArray = [];
-  for (let i = 0; i < currState.listOfPurchasedItemNames.length; i++) {
-    purchasedListArray.push(
-      <Item
-        itemName={currState.listOfPurchasedItemNames[i]}
-        key={i}
-        id={i + 1}
-        foodId={currState.listOfPurchasedItemNames[i]}
-        setState={setState}
-        deleteItem={deleteItem}
-        updateItemStatus={updateItemStatus}
-      />
-    );
-  }
-
   return (
-    <div>
-      <div className="list">
-        <h3>Current List</h3>
-        <p>To Buy:</p>
-        {listArray}
-        <div className="addItemContainer">
-          <input type="text" id="addItemText" onChange={handleChange} onKeyDown={handleKeyDown} />
-          <button onClick={addItem} className="addItemBtn">
-            Add Item
-          </button>
-        </div>
+    <div className="list">
+      <h3>Current List</h3>
+      <p>To Buy:</p>
+      {listArray}
+      <div className="addItemContainer">
+        <input type="text" id="addItemText" onChange={handleChange} onKeyDown={handleKeyDown} />
+        <button onClick={addItem} className="addItemBtn">
+          Add Item
+        </button>
       </div>
-      <div className="list">Bought:{purchasedListArray}</div>
     </div>
   );
 }

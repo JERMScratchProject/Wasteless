@@ -59,6 +59,7 @@ FoodController.deleteFood = (req, res, next) => {
   );
 };
 
+// update status to purchased
 FoodController.updateFoodStatus = (req, res, next) => {
   models.Food.findOneAndUpdate({ item: req.params.item }, { $set: { status: 'purchased' } }).catch(
     (err) =>
@@ -71,6 +72,7 @@ FoodController.updateFoodStatus = (req, res, next) => {
   );
 };
 
+// find food with status of purchased
 FoodController.getPurchasedFood = (req, res, next) => {
   models.Food.find({ status: 'purchased' })
     .then((data) => {
