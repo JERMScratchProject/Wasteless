@@ -59,6 +59,18 @@ FoodController.deleteFood = (req, res, next) => {
   );
 };
 
+// update item name with user input
+FoodController.updateFoodName = (req, res, next) => {
+  models.Food.findOneAndUpdate({ item: req.params.item }).catch((err) =>
+    next({
+      log: `Food.updateFoodName: ERROR: ${err}`,
+      message: {
+        err: 'Error occurred in Food.updateFoodName. Check server logs for more details.',
+      },
+    })
+  );
+};
+
 // update status to purchased
 FoodController.updateFoodStatus = (req, res, next) => {
   models.Food.findOneAndUpdate({ item: req.params.item }, { $set: { status: 'purchased' } }).catch(

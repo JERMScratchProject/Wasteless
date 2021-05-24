@@ -26,6 +26,13 @@ function PurchasedItem(props) {
           Disposed
           <i className="fa fa-trash" />
         </button>
+
+        {/* disposed button */}
+        <button className="purchasedListBtn" id="infoBtn">
+          {' '}
+          Add information
+          <i className="fa fa-info-circle" />
+        </button>
       </div>
     </div>
   );

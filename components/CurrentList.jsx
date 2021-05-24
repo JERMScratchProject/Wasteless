@@ -79,6 +79,19 @@ function CurrentList() {
       return { ...prevState, listOfItemNames: filtered };
     });
   }
+
+  // update food name
+  function updateName(itemName, updatedName) {
+    fetch(`/api/food/${itemName}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'Application/JSON' },
+      body: JSON.stringify({ item: itemName }),
+    }).catch((err) => {
+      console.log(err);
+    });
+    setState(currState.listOfItemNames.map((item) => (item === itemName ? updatedName : item)));
+  }
+
   // updates item status and removes from to buy list
   function updateItemStatus(itemName) {
     fetch(`/api/food/purchased/${itemName}`, {
@@ -122,6 +135,7 @@ function CurrentList() {
         currState={currState}
         setState={setState}
         deleteItem={deleteItem}
+        updateName={updateName}
         updateItemStatus={updateItemStatus}
       />
     );

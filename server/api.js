@@ -18,6 +18,11 @@ router.delete('/food/:item', FoodController.deleteFood, (req, res) =>
   res.status(200).json({ message: 'deleted' })
 );
 
+// update item name with user input
+router.put('/food/:item', FoodController.updateFoodStatus, (req, res) =>
+  res.status(200).json({ message: 'updated name' })
+);
+
 // update status to purchased
 router.put('/food/purchased/:item', FoodController.updateFoodStatus, (req, res) =>
   res.status(200).json({ message: 'updated status to purchased' })
