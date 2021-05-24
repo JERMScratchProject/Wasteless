@@ -143,8 +143,7 @@ function CurrentList() {
 
   return (
     <div className="list">
-      <h3>Current List</h3>
-      <p>To Buy:</p>
+      <h3>To Buy List</h3>
       {listArray}
       <div className="addItemContainer">
         <input type="text" id="addItemText" onChange={handleChange} onKeyDown={handleKeyDown} />

@@ -6,7 +6,19 @@ function EatenItem(props) {
       <span className="items">
         {props.id}. {props.itemName}{' '}
       </span>{' '}
-      <div className="outcomesListBtnContainer" />
+      <div className="outcomesListBtnContainer">
+        {/* liked */}
+        <button className="eatenListBtn" id="likedBtn">
+          {' '}
+          <i className="fa fa-thumbs-up" />
+        </button>
+
+        {/* disliked */}
+        <button className="eatenListBtn" id="dislikedBtn">
+          {' '}
+          <i className="fa fa-thumbs-down" />
+        </button>
+      </div>
     </div>
   );
 }

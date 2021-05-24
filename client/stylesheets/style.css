@@ -2,11 +2,14 @@
   margin:0;
   padding:0;
   box-sizing: border-box;
+  font-family: Helvetica, sans-serif;
+  color: #222725;
 }
 
 h1, h3 {
   text-align: center;
-  font-family: 'Lora', serif;
+  color: #121113;
+
 }
 
 h1 {
@@ -29,7 +32,9 @@ body {
   width:25%;
   border: #6b705c 2px solid;
   border-radius: 10px;
+  border-color: #F7F7F2;
   padding: 10px;
+  box-shadow:5px 5px 10px #222725;
 }
 
 .list {
@@ -37,8 +42,10 @@ body {
   flex-direction: column;
   border: #6b705c 2px solid;
   border-radius: 10px;
+  border-color: #F7F7F2;
   width: 70%;
   padding: 10px;
+  box-shadow:5px 5px 10px #222725;
 }
 
 .link {
@@ -50,6 +57,16 @@ body {
   background-color: #fefae0;
   color: black;
   margin: 5px;
+  box-shadow:5px 5px 10px #222725;
+}
+
+.link:active{
+  background-color: #6b705c;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+}
+
+.link:hover{
+  background-color: #95a26e;
 }
 
 .link:visited{
@@ -71,10 +88,17 @@ body {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 10px;
+  box-shadow:5px 5px 10px #222725;
+  border-radius: 10px;
 }
 
 .addItemBtn:hover{
+  background-color: #a4a994;
+
+}
+.addItemBtn:active{
   background-color: #6b705c;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
 
 }
 
@@ -82,6 +106,7 @@ body {
   margin: 4px 2px;
   padding: 10px;
   border-radius: 10px;
+  box-shadow:5px 5px 10px #222725;
 }
 
 
@@ -96,9 +121,10 @@ body {
   padding: 10px 15px;
   text-align: center;
   margin: 10px;
+  box-shadow:5px 5px 10px #222725;
 }
 
-.toBuyListBtn, .purchasedListBtn{
+.toBuyListBtn, .purchasedListBtn, .eatenListBtn{
   background-color: #b7b7a4;
   border: none;
   padding: 10px;
@@ -111,10 +137,20 @@ body {
   border-radius: 5px;
 }
 
-.toBuyListBtn:hover, .purchasedListBtn:hover{
+.toBuyListBtn:hover, .purchasedListBtn:hover, .eatenListBtn:hover{
   background-color: #6b705c;
 }
 
-.toBuyListBtnContainer, .purchasedListBtnContainer{
+/* .toBuyListBtn, .purchasedListBtn:active{
+  background-color: #6b705c;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+} */
+
+.toBuyListBtnContainer, .purchasedListBtnContainer, .eatenListBtnContainer{
   float: right;
+}
+
+button:active {
+  background-color: #6b705c;
+  box-shadow: inset 5px 5px 5px #c1c1c1;
 }

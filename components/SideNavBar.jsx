@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, BrowserRouter as Router } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function SideNavBar() {
   return (
@@ -12,8 +12,11 @@ function SideNavBar() {
       <NavLink to="/purchased" className="link" activeClassName="active" exact>
         <p> Current Pantry Stock</p>
       </NavLink>
-      <NavLink to="/outcomes" className="link" activeClassName="active">
-        <p> Outcomes</p>
+      <NavLink to="/eaten" className="link" activeClassName="active">
+        <p> Eaten</p>
+      </NavLink>
+      <NavLink to="/disposed" className="link" activeClassName="active">
+        <p> Disposed</p>
       </NavLink>
     </div>
   );

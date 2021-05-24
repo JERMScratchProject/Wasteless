@@ -2,8 +2,9 @@ import React from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import SideNavBar from './SideNavBar';
 import CurrentList from './CurrentList';
-import OutcomesList from './OutcomesList';
 import PurchasedList from './PurchasedList';
+import EatenList from './EatenList';
+import DisposedList from './DisposedList';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <Switch>
         <Route component={CurrentList} exact path="/" />
         <Route component={PurchasedList} exact path="/purchased" />
-        <Route component={OutcomesList} exact path="/outcomes" />
+        <Route component={EatenList} exact path="/eaten" />
+        <Route component={DisposedList} exact path="/disposed" />
       </Switch>
     </div>
   );
