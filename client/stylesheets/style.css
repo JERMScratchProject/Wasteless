@@ -9,7 +9,6 @@
 h1, h3 {
   text-align: center;
   color: #121113;
-  text-shadow: 3px 4px 5px white;
 
 }
 
@@ -35,7 +34,7 @@ body {
   border-radius: 10px;
   border-color: #F7F7F2;
   padding: 10px;
-  box-shadow: 5px 5px white;
+  box-shadow:5px 5px 10px #222725;
 }
 
 .list {
@@ -46,6 +45,7 @@ body {
   border-color: #F7F7F2;
   width: 70%;
   padding: 10px;
+  box-shadow:5px 5px 10px #222725;
 }
 
 .link {
@@ -57,6 +57,7 @@ body {
   background-color: #fefae0;
   color: black;
   margin: 5px;
+  box-shadow:5px 5px 10px #222725;
 }
 
 .link:visited{
@@ -78,10 +79,17 @@ body {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 10px;
+  box-shadow:5px 5px 10px #222725;
+  border-radius: 10px;
 }
 
 .addItemBtn:hover{
   background-color: #6b705c;
+
+}
+.addItemBtn:active{
+  background-color: #6b705c;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
 
 }
 
@@ -89,6 +97,7 @@ body {
   margin: 4px 2px;
   padding: 10px;
   border-radius: 10px;
+  box-shadow:5px 5px 10px #222725;
 }
 
 
@@ -103,6 +112,7 @@ body {
   padding: 10px 15px;
   text-align: center;
   margin: 10px;
+  box-shadow:5px 5px 10px #222725;
 }
 
 .toBuyListBtn, .purchasedListBtn{
@@ -121,6 +131,11 @@ body {
 .toBuyListBtn:hover, .purchasedListBtn:hover{
   background-color: #6b705c;
 }
+
+/* .toBuyListBtn, .purchasedListBtn:active{
+  background-color: #6b705c;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+} */
 
 .toBuyListBtnContainer, .purchasedListBtnContainer{
   float: right;
