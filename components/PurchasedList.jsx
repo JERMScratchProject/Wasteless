@@ -4,6 +4,7 @@ import PurchasedItem from './PurchasedItem';
 function PurchasedList(props) {
   const [currState, setState] = useState(props.state);
   useEffect(() => {
+    console.log('PurchasedList useEffect triggered')
     fetch('/api/purchased')
       .then((items) => {
         const data = items.json();
@@ -35,11 +36,11 @@ function PurchasedList(props) {
       });
   
       setState((prevState) => {
-        const itemNamesSlice = prevState.listOfItemNames?.slice();
+        const itemNamesSlice = prevState.listOfPurchasedItemNames?.slice();
   
         const filtered = itemNamesSlice?.filter((value) => value !== itemName);
   
-        return { ...prevState, listOfItemNames: filtered };
+        return { ...prevState, listOfPurchasedItemNames: filtered };
       });
     }
 

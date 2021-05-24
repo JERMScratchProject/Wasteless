@@ -143,7 +143,7 @@ function CurrentList() {
 
   return (
     <div className="list">
-      <h3>Current List</h3>
+      <h3>To Buy List</h3>
       <p>To Buy:</p>
       {listArray}
       <div className="addItemContainer">

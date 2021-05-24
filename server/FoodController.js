@@ -3,7 +3,7 @@ const models = require('./FoodModel');
 const FoodController = {};
 
 FoodController.getFood = (req, res, next) => {
-  models.Food.find({})
+  models.Food.find({ status: 'to buy' })
     .then((data) => {
       res.locals.food = data;
       return next();
@@ -86,7 +86,7 @@ FoodController.updateFoodStatus = (req, res, next) => {
 
 // find food with status of purchased
 FoodController.getPurchasedFood = (req, res, next) => {
-  models.Food.find({ status: 'purchased' })
+  models.Food.find({ status: 'purchased', outcome: '' })
     .then((data) => {
       res.locals.purchased = data;
       return next();
@@ -116,7 +116,7 @@ FoodController.updateEaten = (req, res, next) => {
 
 // find food with outcome of eaten
 FoodController.getEatenFood = (req, res, next) => {
-  models.Food.find({ status: 'eaten' })
+  models.Food.find({ outcome: 'eaten' })
     .then((data) => {
       res.locals.eaten = data;
       return next();
@@ -146,7 +146,7 @@ FoodController.updateDisposed = (req, res, next) => {
 
 // find food with outcome of disposed
 FoodController.getDisposedFood = (req, res, next) => {
-  models.Food.find({ status: 'disposed' })
+  models.Food.find({ outcome: 'disposed' })
     .then((data) => {
       res.locals.disposed = data;
       return next();
