@@ -60,6 +60,15 @@ body {
   box-shadow:5px 5px 10px #222725;
 }
 
+.link:active{
+  background-color: #6b705c;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+}
+
+.link:hover{
+  background-color: #95a26e;
+}
+
 .link:visited{
   text-decoration: none;
 }
@@ -84,7 +93,7 @@ body {
 }
 
 .addItemBtn:hover{
-  background-color: #6b705c;
+  background-color: #a4a994;
 
 }
 .addItemBtn:active{
@@ -115,7 +124,7 @@ body {
   box-shadow:5px 5px 10px #222725;
 }
 
-.toBuyListBtn, .purchasedListBtn{
+.toBuyListBtn, .purchasedListBtn, .eatenListBtn{
   background-color: #b7b7a4;
   border: none;
   padding: 10px;
@@ -128,7 +137,7 @@ body {
   border-radius: 5px;
 }
 
-.toBuyListBtn:hover, .purchasedListBtn:hover{
+.toBuyListBtn:hover, .purchasedListBtn:hover, .eatenListBtn:hover{
   background-color: #6b705c;
 }
 
@@ -137,6 +146,11 @@ body {
   box-shadow: inset 0px 0px 5px #c1c1c1;
 } */
 
-.toBuyListBtnContainer, .purchasedListBtnContainer{
+.toBuyListBtnContainer, .purchasedListBtnContainer, .eatenListBtnContainer{
   float: right;
+}
+
+button:active {
+  background-color: #6b705c;
+  box-shadow: inset 5px 5px 5px #c1c1c1;
 }

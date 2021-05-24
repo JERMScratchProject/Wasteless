@@ -44,7 +44,6 @@ function DisposedList(props) {
     return (
         <div className="list">
             <h3>Disposed List</h3>
-            <p>Disposed:</p>
             <div>
                 {disposedListArray}
             </div>

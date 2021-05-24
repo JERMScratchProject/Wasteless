@@ -81,7 +81,6 @@ function PurchasedList(props) {
   return (
     <div className="list">
       <h3>Purchased List</h3>
-      <p>Purchased:</p>
       {purchasedListArray}
 
     </div>

@@ -44,7 +44,6 @@ function EatenList(props) {
   return (
     <div className="list">
       <h3>Eaten List</h3>
-      <p>Eaten:</p>
       <div>
         {eatenListArray}
       </div>
