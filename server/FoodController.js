@@ -3,15 +3,11 @@ const models = require('./FoodModel');
 const FoodController = {};
 
 FoodController.getFood = (req, res, next) => {
-  // gets all info/data from the one food item
   models.Food.find({})
     .then((data) => {
-      // storing the data in key called food in res.locals
-
       res.locals.food = data;
       return next();
     })
-    // for catching errors
     .catch((err) =>
       next({
         log: `Food.getFood: ERROR: ${err}`,
@@ -64,7 +60,6 @@ FoodController.deleteFood = (req, res, next) => {
 };
 
 FoodController.updateFoodStatus = (req, res, next) => {
-  // gets all info/data from the one food item
   models.Food.findOneAndUpdate({ item: req.params.item }, { $set: { status: 'purchased' } }).catch(
     (err) =>
       next({
@@ -74,6 +69,22 @@ FoodController.updateFoodStatus = (req, res, next) => {
         },
       })
   );
+};
+
+FoodController.getPurchasedFood = (req, res, next) => {
+  models.Food.find({ status: 'purchased' })
+    .then((data) => {
+      res.locals.purchased = data;
+      return next();
+    })
+    .catch((err) =>
+      next({
+        log: `Food.getPurchasedFood: ERROR: ${err}`,
+        message: {
+          err: 'Error occurred in Food.getPurchasedFood. Check server logs for more details.',
+        },
+      })
+    );
 };
 
 // find items by id of which food item user bought

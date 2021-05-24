@@ -20,4 +20,8 @@ router.put('/food/:item', FoodController.updateFoodStatus, (req, res) =>
   res.status(200).json({ message: 'updated' })
 );
 
+router.get('/purchased', FoodController.getPurchasedFood, (req, res) => {
+  res.status(200).json(res.locals.purchased);
+});
+
 module.exports = router;

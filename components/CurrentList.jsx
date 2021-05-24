@@ -3,9 +3,10 @@ import Item from './Item';
 
 function CurrentList() {
   const state = {
-    listOfItems: [], // array to hold db objects -- 6
-    listOfItemNames: [], // array to hold names extracted from db objects --- 7
-    login: true,
+    listOfItems: [], // array to hold db objects
+    listOfItemNames: [], // array to hold names extracted from db objects
+    listOfPurchasedItems: [], // array to hold db objects
+    listOfPurchasedItemNames: [], // array to hold names extracted from db objects
   };
 
   const [currState, setState] = useState(state);
@@ -27,6 +28,29 @@ function CurrentList() {
         console.log('returned items: ', returnedItems);
         console.log(`NAMES: ${returnedItemNames}`);
         setState({ ...currState, listOfItems: returnedItems, listOfItemNames: returnedItemNames });
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log('use effect purchased started');
+    fetch('/api/purchased')
+      .then((items) => {
+        const data = items.json();
+        return data;
+      })
+      .then((data) => {
+        const returnedItems = [];
+        const returnedItemNames = [];
+        for (const el of data) {
+          returnedItems.push(el);
+          returnedItemNames.push(el.item);
+        }
+
+        setState({
+          ...currState,
+          listOfPurchasedItems: returnedItems,
+          listOfPurchasedItemNames: returnedItemNames,
+        });
       });
   }, []);
 
@@ -78,7 +102,7 @@ function CurrentList() {
     });
   }
 
-  // updates item status and removes from list
+  // updates item status and removes from to buy list
   function updateItemStatus(itemName) {
     console.log('update started');
     fetch(`/api/food/${itemName}`, {
@@ -127,17 +151,35 @@ function CurrentList() {
     );
   }
 
+  const purchasedListArray = [];
+  for (let i = 0; i < currState.listOfPurchasedItemNames.length; i++) {
+    purchasedListArray.push(
+      <Item
+        itemName={currState.listOfPurchasedItemNames[i]}
+        key={i}
+        id={i + 1}
+        foodId={currState.listOfPurchasedItemNames[i]}
+        setState={setState}
+        deleteItem={deleteItem}
+        updateItemStatus={updateItemStatus}
+      />
+    );
+  }
+
   return (
-    <div className="list">
-      <h3>Current List</h3>
-      <p>To Buy:</p>
-      {listArray}
-      <div className="addItemContainer">
-        <input type="text" id="addItemText" onChange={handleChange} onKeyDown={handleKeyDown} />
-        <button onClick={addItem} className="addItemBtn">
-          Add Item
-        </button>
+    <div>
+      <div className="list">
+        <h3>Current List</h3>
+        <p>To Buy:</p>
+        {listArray}
+        <div className="addItemContainer">
+          <input type="text" id="addItemText" onChange={handleChange} onKeyDown={handleKeyDown} />
+          <button onClick={addItem} className="addItemBtn">
+            Add Item
+          </button>
+        </div>
       </div>
+      <div className="list">Bought:{purchasedListArray}</div>
     </div>
   );
 }
