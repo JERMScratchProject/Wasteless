@@ -14,6 +14,7 @@ h1, h3 {
 
 h1 {
   font-size: 60px;
+  color: #F7F7F2;
 }
 
 body {
@@ -66,7 +67,7 @@ body {
 }
 
 .link:hover{
-  background-color: #7eb358;
+  background-color: #a5a58d;
 }
 
 .link:visited{
