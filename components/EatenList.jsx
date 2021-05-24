@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import EatenItem from './EatenItem';
 
-
 function EatenList(props) {
   const [currState, setState] = useState(props.state);
+
+  
   useEffect(() => {
     fetch('/api/eaten')
       .then((items) => {
@@ -26,9 +27,45 @@ function EatenList(props) {
       });
   }, []);
 
+  function updateLiked(itemName) {
+    fetch(`/api/food/eaten/liked/${itemName}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'Application/JSON' },
+      body: JSON.stringify({ item: itemName }),
+    }).catch((err) => {
+      console.log(err);
+    });
+
+    setState((prevState) => {
+      const itemNamesSlice = prevState.listOfLikedItemNames?.slice();
+  
+        const filtered = itemNamesSlice?.filter((value) => value !== itemName);
+  
+        return { ...prevState, listOfDislikedItemNames: filtered };
+    });
+  }
+
+  function updateDisliked(itemName) {
+      fetch(`/api/food/eaten/disliked/${itemName}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'Application/JSON' },
+        body: JSON.stringify({ item: itemName }),
+      }).catch((err) => {
+        console.log(err);
+      });
+  
+      setState((prevState) => {
+        const itemNamesSlice = prevState.listOfDislikedItemNames?.slice();
+  
+        const filtered = itemNamesSlice?.filter((value) => value !== itemName);
+  
+        return { ...prevState, listOfDislikedItemNames: filtered };
+      });
+    }
+    
+    
   const eatenListArray = [];
   for (let i = 0; i < currState?.listOfEatenItemNames.length; i++) {
-    console.log('eaten loop occured' + i);
     eatenListArray.push(
       <EatenItem
         itemName={currState?.listOfEatenItemNames[i]}
@@ -36,10 +73,11 @@ function EatenList(props) {
         id={i + 1}
         foodId={currState?.listOfEatenItemNames[i]}
         setState={setState}
+        updateLiked={updateLiked}
+        updateDisiked={updateDisliked}
       />
     );
   }
-
 
   return (
     <div className="list">

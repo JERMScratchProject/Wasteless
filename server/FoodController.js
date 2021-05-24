@@ -1,5 +1,4 @@
 const models = require('./FoodModel');
-
 const FoodController = {};
 
 FoodController.getFood = (req, res, next) => {
@@ -126,6 +125,68 @@ FoodController.getEatenFood = (req, res, next) => {
         log: `Food.getEatenFood: ERROR: ${err}`,
         message: {
           err: 'Error occurred in Food.getEatenFood. Check server logs for more details.',
+        },
+      })
+    );
+};
+
+// update preference to liked
+FoodController.updateLiked = (req, res, next) => {
+  models.Food.findOneAndUpdate({ item: req.params.item }, { $set: { preference: 'liked' } }).catch(
+    (err) =>
+      next({
+        log: `Food.updateLiked: ERROR: ${err}`,
+        message: {
+          err: 'Error occurred in Food.updateLiked. Check server logs for more details.',
+        },
+      })
+  );
+};
+
+// find food with preference of liked
+FoodController.getLikedFood = (req, res, next) => {
+  models.Food.find({ preference: 'liked' })
+    .then((data) => {
+      res.locals.liked = data;
+      return next();
+    })
+    .catch((err) =>
+      next({
+        log: `Food.getLikedFood: ERROR: ${err}`,
+        message: {
+          err: 'Error occurred in Food.getLikedFood. Check server logs for more details.',
+        },
+      })
+    );
+};
+
+// update preference to disliked
+FoodController.updateDisliked = (req, res, next) => {
+  models.Food.findOneAndUpdate(
+    { item: req.params.item },
+    { $set: { preference: 'disliked' } }
+  ).catch((err) =>
+    next({
+      log: `Food.updateDisliked: ERROR: ${err}`,
+      message: {
+        err: 'Error occurred in Food.updateDisliked. Check server logs for more details.',
+      },
+    })
+  );
+};
+
+// find food with outcome of eaten
+FoodController.getDislikedFood = (req, res, next) => {
+  models.Food.find({ preference: 'disliked' })
+    .then((data) => {
+      res.locals.disliked = data;
+      return next();
+    })
+    .catch((err) =>
+      next({
+        log: `Food.getDislikedFood: ERROR: ${err}`,
+        message: {
+          err: 'Error occurred in Food.getDislikedFood. Check server logs for more details.',
         },
       })
     );

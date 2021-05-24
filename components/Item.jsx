@@ -25,16 +25,16 @@ function Item(props) {
           <i className="fa fa-edit" />{' '}
         </button>
 
-        {/* delete button */}
-        <button
+        {/* eraser button */}
+        <button 
           className="toBuyListBtn"
-          id="deleteBtn"
+          id="eraserBtn"
           onClick={() => {
             props.deleteItem(props.itemName);
           }}
         >
           {' '}
-          <i className="fa fa-trash-o" />{' '}
+          <i class="fa fa-ban" />{' '}
         </button>
       </div>
     </div>

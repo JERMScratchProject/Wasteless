@@ -8,13 +8,25 @@ function EatenItem(props) {
       </span>{' '}
       <div className="outcomesListBtnContainer">
         {/* liked */}
-        <button className="eatenListBtn" id="likedBtn">
+        <button
+          className="eatenListBtn"
+          id="likedBtn"
+          onClick={() => {
+            props.updateLiked(props.itemName);
+          }}
+        >
           {' '}
           <i className="fa fa-thumbs-up" />
         </button>
 
         {/* disliked */}
-        <button className="eatenListBtn" id="dislikedBtn">
+        <button
+          className="eatenListBtn"
+          id="dislikedBtn"
+          onClick={() => {
+            props.updateDisliked(props.itemName);
+          }}
+        >
           {' '}
           <i className="fa fa-thumbs-down" />
         </button>
