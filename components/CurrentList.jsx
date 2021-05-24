@@ -5,14 +5,17 @@ function CurrentList() {
   const state = {
     listOfItems: [], // array to hold db objects
     listOfItemNames: [], // array to hold names extracted from db objects
-    listOfPurchasedItems: [], // array to hold db objects
-    listOfPurchasedItemNames: [], // array to hold names extracted from db objects
+    listOfPurchasedItems: [],
+    listOfPurchasedItemNames: [],
+    listOfEatenItems: [],
+    listOfEatenItemNames: [],
+    listOfDisposedItems: [],
+    listOfDisposedItemNames: [],
   };
 
   const [currState, setState] = useState(state);
 
   useEffect(() => {
-    console.log('use effect started');
     fetch('/api/')
       .then((items) => {
         const data = items.json();
@@ -25,13 +28,11 @@ function CurrentList() {
           returnedItems.push(el);
           returnedItemNames.push(el.item);
         }
-        console.log('returned items: ', returnedItems);
-        console.log(`NAMES: ${returnedItemNames}`);
         setState({ ...currState, listOfItems: returnedItems, listOfItemNames: returnedItemNames });
       });
   }, []);
 
-  const { listOfItemNames } = currState;
+  // const { listOfItemNames } = currState;
 
   let newItem;
 
@@ -80,8 +81,7 @@ function CurrentList() {
   }
   // updates item status and removes from to buy list
   function updateItemStatus(itemName) {
-    console.log('update started');
-    fetch(`/api/food/${itemName}`, {
+    fetch(`/api/food/purchased/${itemName}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'Application/JSON' },
       body: JSON.stringify({ item: itemName }),

@@ -19,7 +19,7 @@ router.delete('/food/:item', FoodController.deleteFood, (req, res) =>
 );
 
 // update status to purchased
-router.put('/food/:item', FoodController.updateFoodStatus, (req, res) =>
+router.put('/food/purchased/:item', FoodController.updateFoodStatus, (req, res) =>
   res.status(200).json({ message: 'updated status to purchased' })
 );
 
@@ -29,7 +29,7 @@ router.get('/purchased', FoodController.getPurchasedFood, (req, res) => {
 });
 
 // update outcome to eaten
-router.put('/food/:item', FoodController.updateEaten, (req, res) =>
+router.put('/food/eaten/:item', FoodController.updateEaten, (req, res) =>
   res.status(200).json({ message: 'updated outcome to eaten' })
 );
 
@@ -39,7 +39,7 @@ router.get('/eaten', FoodController.getEatenFood, (req, res) => {
 });
 
 // update outcome to disposed
-router.put('/food/:item', FoodController.updateDisposed, (req, res) =>
+router.put('/food/disposed/:item', FoodController.updateDisposed, (req, res) =>
   res.status(200).json({ message: 'updated outcome to disposed' })
 );
 

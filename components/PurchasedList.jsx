@@ -4,7 +4,6 @@ import PurchasedItem from './PurchasedItem';
 function PurchasedList(props) {
   const [currState, setState] = useState(props.state);
   useEffect(() => {
-    console.log('use effect purchased started');
     fetch('/api/purchased')
       .then((items) => {
         const data = items.json();
@@ -25,6 +24,26 @@ function PurchasedList(props) {
       });
   }, []);
 
+    // updates item outcome to eaten and removes from purchased list
+    function updateEaten(itemName) {
+      fetch(`/api/food/eaten/${itemName}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'Application/JSON' },
+        body: JSON.stringify({ item: itemName }),
+      }).catch((err) => {
+        console.log(err);
+      });
+  
+      setState((prevState) => {
+        const itemNamesSlice = prevState.listOfItemNames?.slice();
+  
+        const filtered = itemNamesSlice?.filter((value) => value !== itemName);
+  
+        return { ...prevState, listOfItemNames: filtered };
+      });
+    }
+
+
   const purchasedListArray = [];
   for (let i = 0; i < currState?.listOfPurchasedItemNames.length; i++) {
     purchasedListArray.push(
@@ -34,6 +53,7 @@ function PurchasedList(props) {
         id={i + 1}
         foodId={currState?.listOfPurchasedItemNames[i]}
         setState={setState}
+        updateEaten={updateEaten}
       />
     );
   }

@@ -7,14 +7,20 @@ function PurchasedItem(props) {
         {props.id}. {props.itemName}{' '}
       </span>{' '}
       <div className="purchasedListBtnContainer">
-        {/* bought button */}
-        <button className="purchasedListBtn" id="eatenBtn">
+        {/* eaten button */}
+        <button
+          className="purchasedListBtn"
+          id="eatenBtn"
+          onClick={() => {
+            props.updateEaten(props.itemName);
+          }}
+        >
           {' '}
           Eaten
           <i className="fa fa-cutlery" />{' '}
         </button>
 
-        {/* edit button */}
+        {/* disposed button */}
         <button className="purchasedListBtn" id="disposedBtn">
           {' '}
           Disposed
