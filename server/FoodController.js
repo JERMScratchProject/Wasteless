@@ -63,6 +63,19 @@ FoodController.deleteFood = (req, res, next) => {
   );
 };
 
+FoodController.updateFoodStatus = (req, res, next) => {
+  // gets all info/data from the one food item
+  models.Food.findOneAndUpdate({ item: req.params.item }, { $set: { status: 'purchased' } }).catch(
+    (err) =>
+      next({
+        log: `Food.updateFoodStatus: ERROR: ${err}`,
+        message: {
+          err: 'Error occurred in Food.updateFoodStatus. Check server logs for more details.',
+        },
+      })
+  );
+};
+
 // find items by id of which food item user bought
 // has status of to buy and update their status
 

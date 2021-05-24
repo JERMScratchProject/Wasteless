@@ -64,23 +64,39 @@ function CurrentList() {
     fetch(`/api/food/${itemName}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'Application/JSON' },
-      body: JSON.stringify({ item:itemName }),
+      body: JSON.stringify({ item: itemName }),
     }).catch((err) => {
       console.log(err);
     });
-    
+
     setState((prevState) => {
       const itemNamesSlice = prevState.listOfItemNames.slice();
-      
-      const filtered = itemNamesSlice.filter((value)=>{
-        return value != itemName;
-      })
 
-      return {...prevState, listOfItemNames: filtered}
+      const filtered = itemNamesSlice.filter((value) => value !== itemName);
+
+      return { ...prevState, listOfItemNames: filtered };
     });
-
   }
 
+  // updates item status and removes from list
+  function updateItemStatus(itemName) {
+    console.log('update started');
+    fetch(`/api/food/${itemName}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'Application/JSON' },
+      body: JSON.stringify({ item: itemName }),
+    }).catch((err) => {
+      console.log(err);
+    });
+
+    setState((prevState) => {
+      const itemNamesSlice = prevState.listOfItemNames.slice();
+
+      const filtered = itemNamesSlice.filter((value) => value !== itemName);
+
+      return { ...prevState, listOfItemNames: filtered };
+    });
+  }
 
   // Selects user input when change is detected
   function handleChange(e) {
@@ -106,6 +122,7 @@ function CurrentList() {
         currState={currState}
         setState={setState}
         deleteItem={deleteItem}
+        updateItemStatus={updateItemStatus}
       />
     );
   }

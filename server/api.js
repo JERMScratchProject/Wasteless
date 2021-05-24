@@ -16,4 +16,8 @@ router.delete('/food/:item', FoodController.deleteFood, (req, res) =>
   res.status(200).json({ message: 'deleted' })
 );
 
+router.put('/food/:item', FoodController.updateFoodStatus, (req, res) =>
+  res.status(200).json({ message: 'updated' })
+);
+
 module.exports = router;

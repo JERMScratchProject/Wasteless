@@ -8,7 +8,13 @@ function Item(props) {
       </span>{' '}
       <div className="toBuyListBtnContainer">
         {/* bought button */}
-        <button className="toBuyListBtn">
+        <button
+          className="toBuyListBtn"
+          id="deleteBtn"
+          onClick={() => {
+            props.updateItemStatus(props.itemName);
+          }}
+        >
           {' '}
           <i className="fa fa-check" />{' '}
         </button>
