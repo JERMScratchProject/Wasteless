@@ -3,15 +3,19 @@ import Item from './Item';
 
 function CurrentList() {
   const state = {
-    listOfItems: [], // array to hold db objects -- 6
-    listOfItemNames: [], // array to hold names extracted from db objects --- 7
-    login: true,
+    listOfItems: [], // array to hold db objects
+    listOfItemNames: [], // array to hold names extracted from db objects
+    listOfPurchasedItems: [],
+    listOfPurchasedItemNames: [],
+    listOfEatenItems: [],
+    listOfEatenItemNames: [],
+    listOfDisposedItems: [],
+    listOfDisposedItemNames: [],
   };
 
   const [currState, setState] = useState(state);
 
   useEffect(() => {
-    console.log('use effect started');
     fetch('/api/')
       .then((items) => {
         const data = items.json();
@@ -24,13 +28,11 @@ function CurrentList() {
           returnedItems.push(el);
           returnedItemNames.push(el.item);
         }
-        console.log('returned items: ', returnedItems);
-        console.log(`NAMES: ${returnedItemNames}`);
         setState({ ...currState, listOfItems: returnedItems, listOfItemNames: returnedItemNames });
       });
   }, []);
 
-  const { listOfItemNames } = currState;
+  // const { listOfItemNames } = currState;
 
   let newItem;
 
@@ -64,23 +66,50 @@ function CurrentList() {
     fetch(`/api/food/${itemName}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'Application/JSON' },
-      body: JSON.stringify({ item:itemName }),
+      body: JSON.stringify({ item: itemName }),
     }).catch((err) => {
       console.log(err);
     });
-    
+
     setState((prevState) => {
       const itemNamesSlice = prevState.listOfItemNames.slice();
-      
-      const filtered = itemNamesSlice.filter((value)=>{
-        return value != itemName;
-      })
 
-      return {...prevState, listOfItemNames: filtered}
+      const filtered = itemNamesSlice.filter((value) => value !== itemName);
+
+      return { ...prevState, listOfItemNames: filtered };
     });
-
   }
 
+  // update food name
+  function updateName(itemName, updatedName) {
+    fetch(`/api/food/${itemName}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'Application/JSON' },
+      body: JSON.stringify({ item: itemName }),
+    }).catch((err) => {
+      console.log(err);
+    });
+    setState(currState.listOfItemNames.map((item) => (item === itemName ? updatedName : item)));
+  }
+
+  // updates item status and removes from to buy list
+  function updateItemStatus(itemName) {
+    fetch(`/api/food/purchased/${itemName}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'Application/JSON' },
+      body: JSON.stringify({ item: itemName }),
+    }).catch((err) => {
+      console.log(err);
+    });
+
+    setState((prevState) => {
+      const itemNamesSlice = prevState.listOfItemNames.slice();
+
+      const filtered = itemNamesSlice.filter((value) => value !== itemName);
+
+      return { ...prevState, listOfItemNames: filtered };
+    });
+  }
 
   // Selects user input when change is detected
   function handleChange(e) {
@@ -106,6 +135,8 @@ function CurrentList() {
         currState={currState}
         setState={setState}
         deleteItem={deleteItem}
+        updateName={updateName}
+        updateItemStatus={updateItemStatus}
       />
     );
   }

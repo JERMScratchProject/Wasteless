@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 function Item(props) {
   return (
@@ -8,7 +8,13 @@ function Item(props) {
       </span>{' '}
       <div className="toBuyListBtnContainer">
         {/* bought button */}
-        <button className="toBuyListBtn">
+        <button
+          className="toBuyListBtn"
+          id="deleteBtn"
+          onClick={() => {
+            props.updateItemStatus(props.itemName);
+          }}
+        >
           {' '}
           <i className="fa fa-check" />{' '}
         </button>
