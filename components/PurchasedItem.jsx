@@ -21,13 +21,19 @@ function PurchasedItem(props) {
         </button>
 
         {/* disposed button */}
-        <button className="purchasedListBtn" id="disposedBtn">
+        <button
+          className="purchasedListBtn"
+          id="disposedBtn"
+          onClick={() => {
+            props.updateDisposed(props.itemName);
+          }}
+        >
           {' '}
           Disposed
           <i className="fa fa-trash" />
         </button>
 
-        {/* disposed button */}
+        {/* add info button */}
         <button className="purchasedListBtn" id="infoBtn">
           {' '}
           Add information

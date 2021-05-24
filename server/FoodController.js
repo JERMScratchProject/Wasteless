@@ -41,7 +41,7 @@ FoodController.addFood = (req, res, next) => {
       next({
         log: `FoodController.addFood: ERROR: ${err}`,
         message: {
-          err: 'Error occurred in FoodController.addFood. Check server logs for more details.',
+          err: 'Error opccurred in FoodController.addFood. Check server logs for more details.',
         },
       })
     );

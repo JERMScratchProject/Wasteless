@@ -2,11 +2,15 @@
   margin:0;
   padding:0;
   box-sizing: border-box;
+  font-family: Helvetica, sans-serif;
+  color: #222725;
 }
 
 h1, h3 {
   text-align: center;
-  font-family: 'Lora', serif;
+  color: #121113;
+  text-shadow: 3px 4px 5px white;
+
 }
 
 h1 {
@@ -29,7 +33,9 @@ body {
   width:25%;
   border: #6b705c 2px solid;
   border-radius: 10px;
+  border-color: #F7F7F2;
   padding: 10px;
+  box-shadow: 5px 5px white;
 }
 
 .list {
@@ -37,6 +43,7 @@ body {
   flex-direction: column;
   border: #6b705c 2px solid;
   border-radius: 10px;
+  border-color: #F7F7F2;
   width: 70%;
   padding: 10px;
 }

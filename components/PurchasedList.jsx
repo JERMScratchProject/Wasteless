@@ -44,7 +44,25 @@ function PurchasedList(props) {
       });
     }
 
-
+    // updates item outcome to eaten and removes from purchased list
+    function updateDisposed(itemName) {
+        fetch(`/api/food/disposed/${itemName}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'Application/JSON' },
+          body: JSON.stringify({ item: itemName }),
+        }).catch((err) => {
+          console.log(err);
+        });
+    
+        setState((prevState) => {
+          const itemNamesSlice = prevState.listOfPurchasedItemNames?.slice();
+    
+          const filtered = itemNamesSlice?.filter((value) => value !== itemName);
+    
+          return { ...prevState, listOfPurchasedItemNames: filtered };
+        });
+      }
+  
   const purchasedListArray = [];
   for (let i = 0; i < currState?.listOfPurchasedItemNames.length; i++) {
     purchasedListArray.push(
@@ -55,6 +73,7 @@ function PurchasedList(props) {
         foodId={currState?.listOfPurchasedItemNames[i]}
         setState={setState}
         updateEaten={updateEaten}
+        updateDisposed={updateDisposed}
       />
     );
   }
@@ -64,7 +83,7 @@ function PurchasedList(props) {
       <h3>Purchased List</h3>
       <p>Purchased:</p>
       {purchasedListArray}
- 
+
     </div>
   );
 }
