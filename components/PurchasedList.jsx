@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Item from './Item';
+import PurchasedItem from './PurchasedItem';
 
 function PurchasedList(props) {
   const [currState, setState] = useState(props.state);
@@ -28,7 +28,7 @@ function PurchasedList(props) {
   const purchasedListArray = [];
   for (let i = 0; i < currState?.listOfPurchasedItemNames.length; i++) {
     purchasedListArray.push(
-      <Item
+      <PurchasedItem
         itemName={currState?.listOfPurchasedItemNames[i]}
         key={i}
         id={i + 1}
@@ -43,10 +43,7 @@ function PurchasedList(props) {
       <h3>Purchased List</h3>
       <p>Purchased:</p>
       {purchasedListArray}
-      <input type="text" id="newItemField" />
-      <button className="button">
-        Add Item
-      </button>
+ 
     </div>
   );
 }

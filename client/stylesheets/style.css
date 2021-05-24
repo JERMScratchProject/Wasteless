@@ -98,7 +98,7 @@ body {
   margin: 10px;
 }
 
-.toBuyListBtn{
+.toBuyListBtn, .purchasedListBtn{
   background-color: #b7b7a4;
   border: none;
   padding: 10px;
@@ -111,10 +111,10 @@ body {
   border-radius: 5px;
 }
 
-.toBuyListBtn:hover{
+.toBuyListBtn:hover, .purchasedListBtn:hover{
   background-color: #6b705c;
 }
 
-.toBuyListBtnContainer{
+.toBuyListBtnContainer, .purchasedListBtnContainer{
   float: right;
 }

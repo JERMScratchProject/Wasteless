@@ -89,9 +89,64 @@ FoodController.getPurchasedFood = (req, res, next) => {
     );
 };
 
-// find items by id of which food item user bought
-// has status of to buy and update their status
+// update outcome to eaten
+FoodController.updateEaten = (req, res, next) => {
+  models.Food.findOneAndUpdate({ item: req.params.item }, { $set: { outcome: 'eaten' } }).catch(
+    (err) =>
+      next({
+        log: `Food.updateEaten: ERROR: ${err}`,
+        message: {
+          err: 'Error occurred in Food.updateEaten. Check server logs for more details.',
+        },
+      })
+  );
+};
 
-// FoodController.updateStatus.findOneAndUpdate({ status: 'purchased' });
+// find food with outcome of eaten
+FoodController.getEatenFood = (req, res, next) => {
+  models.Food.find({ status: 'eaten' })
+    .then((data) => {
+      res.locals.eaten = data;
+      return next();
+    })
+    .catch((err) =>
+      next({
+        log: `Food.getEatenFood: ERROR: ${err}`,
+        message: {
+          err: 'Error occurred in Food.getEatenFood. Check server logs for more details.',
+        },
+      })
+    );
+};
+
+// update outcome to disposed
+FoodController.updateDisposed = (req, res, next) => {
+  models.Food.findOneAndUpdate({ item: req.params.item }, { $set: { outcome: 'disposed' } }).catch(
+    (err) =>
+      next({
+        log: `Food.updateDisposed: ERROR: ${err}`,
+        message: {
+          err: 'Error occurred in Food.updateDisposed. Check server logs for more details.',
+        },
+      })
+  );
+};
+
+// find food with outcome of disposed
+FoodController.getDisposedFood = (req, res, next) => {
+  models.Food.find({ status: 'disposed' })
+    .then((data) => {
+      res.locals.disposed = data;
+      return next();
+    })
+    .catch((err) =>
+      next({
+        log: `Food.getDisposedFood: ERROR: ${err}`,
+        message: {
+          err: 'Error occurred in Food.getDisposedFood. Check server logs for more details.',
+        },
+      })
+    );
+};
 
 module.exports = FoodController;
