@@ -142,10 +142,6 @@ body {
   background-color: #6b705c;
 }
 
-/* .toBuyListBtn, .purchasedListBtn:active{
-  background-color: #6b705c;
-  box-shadow: inset 0px 0px 5px #c1c1c1;
-} */
 
 .toBuyListBtnContainer, .purchasedListBtnContainer, .eatenListBtnContainer{
   float: right;
