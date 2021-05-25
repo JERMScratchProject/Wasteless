@@ -27,41 +27,41 @@ function EatenList(props) {
       });
   }, []);
 
-  function updateLiked(itemName) {
-    fetch(`/api/food/eaten/liked/${itemName}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'Application/JSON' },
-      body: JSON.stringify({ item: itemName }),
-    }).catch((err) => {
-      console.log(err);
-    });
+  // function updateLiked(itemName) {
+  //   fetch(`/api/food/eaten/liked/${itemName}`, {
+  //     method: 'PUT',
+  //     headers: { 'Content-Type': 'Application/JSON' },
+  //     body: JSON.stringify({ item: itemName }),
+  //   }).catch((err) => {
+  //     console.log(err);
+  //   });
 
-    setState((prevState) => {
-      const itemNamesSlice = prevState.listOfLikedItemNames?.slice();
+  //   setState((prevState) => {
+  //     const itemNamesSlice = prevState.listOfLikedItemNames?.slice();
   
-        const filtered = itemNamesSlice?.filter((value) => value !== itemName);
+  //       const filtered = itemNamesSlice?.filter((value) => value !== itemName);
   
-        return { ...prevState, listOfDislikedItemNames: filtered };
-    });
-  }
+  //       return { ...prevState, listOfLikedItemNames: filtered };
+  //   });
+  // }
 
-  function updateDisliked(itemName) {
-      fetch(`/api/food/eaten/disliked/${itemName}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'Application/JSON' },
-        body: JSON.stringify({ item: itemName }),
-      }).catch((err) => {
-        console.log(err);
-      });
+  // function updateDisliked(itemName) {
+  //     fetch(`/api/food/eaten/disliked/${itemName}`, {
+  //       method: 'PUT',
+  //       headers: { 'Content-Type': 'Application/JSON' },
+  //       body: JSON.stringify({ item: itemName }),
+  //     }).catch((err) => {
+  //       console.log(err);
+  //     });
   
-      setState((prevState) => {
-        const itemNamesSlice = prevState.listOfDislikedItemNames?.slice();
+  //     setState((prevState) => {
+  //       const itemNamesSlice = prevState.listOfDislikedItemNames?.slice();
   
-        const filtered = itemNamesSlice?.filter((value) => value !== itemName);
+  //       const filtered = itemNamesSlice?.filter((value) => value !== itemName);
   
-        return { ...prevState, listOfDislikedItemNames: filtered };
-      });
-    }
+  //       return { ...prevState, listOfDislikedItemNames: filtered };
+  //     });
+  //   }
     
     
   const eatenListArray = [];
@@ -73,8 +73,8 @@ function EatenList(props) {
         id={i + 1}
         foodId={currState?.listOfEatenItemNames[i]}
         setState={setState}
-        updateLiked={updateLiked}
-        updateDisiked={updateDisliked}
+        // updateLiked={updateLiked}
+        // updateDisliked={updateDisliked}
       />
     );
   }

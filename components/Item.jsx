@@ -26,7 +26,7 @@ function Item(props) {
         </button>
 
         {/* eraser button */}
-        <button 
+        <button
           className="toBuyListBtn"
           id="eraserBtn"
           onClick={() => {
@@ -34,7 +34,7 @@ function Item(props) {
           }}
         >
           {' '}
-          <i class="fa fa-ban" />{' '}
+          <i className="fa fa-ban" />{' '}
         </button>
       </div>
     </div>
