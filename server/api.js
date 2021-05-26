@@ -15,7 +15,7 @@ router.post('/food', FoodController.addFood, (req, res) => res.status(200).json(
 
 // delete food
 router.delete('/food/:item', FoodController.deleteFood, (req, res) =>
-  res.status(200).json({ message: 'deleted' })
+  res.status(200).json({ message: 'delete hit' })
 );
 
 // update item name with user input

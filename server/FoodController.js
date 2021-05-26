@@ -53,7 +53,19 @@ FoodController.deleteFood = (req, res, next) => {
   console.log('Req params: ', req.params);
   // gets all info/data from the one food item
   models.Food.deleteOne({ item: req.params.item })
-    .then(() => next())
+    .then((res) => {
+      console.log('deleteOne resulting object: ', res);
+      if (res.deletedCount === 0) {
+        next({
+          log: `Food.deleteFood: ERROR`,
+          message: {
+            err: 'Error occurred in Food.deleteFood. Check server logs for more details.',
+          },
+        });
+      } else {
+        next();
+      }
+    })
     .catch((err) =>
     next({
       log: `Food.deleteFood: ERROR: ${err}`,
@@ -66,9 +78,17 @@ FoodController.deleteFood = (req, res, next) => {
 
 // update item name with user input
 FoodController.updateFoodName = (req, res, next) => {
-  models.Food.findOneAndUpdate({ item: req.params.item },
+  models.Food.updateOne({ item: req.params.item },
     { $set: { item: req.body.item } })
-  .then(() => next())
+  .then((res) => {
+    console.log('Update result: ', res);
+    res.n ? next() : next({
+      log: `Food.updateFoodName: ERROR OVER HERE`,
+      message: {
+        err: 'Error occurred in Food.updateFoodName. Check server logs for more details.',
+      },
+    });
+  })
   .catch((err) =>
     next({
       log: `Food.updateFoodName: ERROR: ${err}`,

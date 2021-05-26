@@ -36,7 +36,7 @@ describe("Route integration", () => {
     });
 
     describe("POST", () => {
-      it("responds with 200 status and application/json content type", () => {
+      xit("responds with 200 status and application/json content type", () => {
         return request(server)
           .post("/api/food")
           .send({ item: "orange" })
@@ -49,7 +49,7 @@ describe("Route integration", () => {
         expect(res.body).toHaveProperty("item", "mango");
       };
 
-      it("responds with mango in a JSON object", () => {
+      xit("responds with mango in a JSON object", () => {
         return request(server)
           .post("/api/food")
           .send({ item: "mango" })
@@ -63,20 +63,28 @@ describe("Route integration", () => {
     });
 
     describe("PUT", () => {
-      xit("responds with 200 status and application/json content type", () => {
+      it("responds with 200 status and application/json content type", () => {
         return request(server)
-          .put("/api/food/apple")
-          .send({ item: "grape" })
+          .put("/api/food/grape4")
+          .send({ item: "grape4" })
           .expect("Content-Type", /application\/json/)
           .expect(200);
       });
 
-    describe("DELETE", () => {
-      it("responds with 200 status and application/json content type", () => {
+      it("responds with 400 status and application/json content type upon invalid params", () => {
+        return request(server)
+          .put("/api/food/papaya")
+          .send({ item: "papaya2" })
+          .expect("Content-Type", /application\/json/)
+          .expect(400);
+      });
+
+    xdescribe("DELETE", () => {
+      it("responds with 400 status and application/json content type", () => {
         return request(server)
           .delete("/api/food/orange")
           // .send({ item: "orange" })
-          .expect(200);
+          .expect(400);
       });
     });
 
