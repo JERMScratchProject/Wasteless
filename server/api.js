@@ -19,9 +19,10 @@ router.delete('/food/:item', FoodController.deleteFood, (req, res) =>
 );
 
 // update item name with user input
-router.put('/food/:item', FoodController.updateFoodStatus, (req, res) =>
+router.put('/food/:item', FoodController.updateFoodName, (req, res) => {
+  console.log('HIT from updateFoodName next()');
   res.status(200).json({ message: 'updated name' })
-);
+});
 
 // update status to purchased
 router.put('/food/purchased/:item', FoodController.updateFoodStatus, (req, res) =>

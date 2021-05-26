@@ -28,7 +28,7 @@ app.use((err, req, res, next) => {
   const errorObj = Object.assign(defaultErr, err);
   console.log(errorObj.log);
   res.status(errorObj.status).send(JSON.stringify(errorObj.message));
-  next();
+  // next();
 });
 
 app.listen(3000); // listens on port 3000 -> http://localhost:3000/
